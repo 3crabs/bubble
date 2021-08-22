@@ -1,0 +1,30 @@
+syntax = "proto3";
+package task;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "./task";
+
+service Task {
+  rpc getTasks(google.protobuf.Empty) returns (TaskInfos);
+  rpc addTask(TaskCreateInfo) returns (google.protobuf.StringValue);
+  rpc doneTask(google.protobuf.StringValue) returns (google.protobuf.Empty);
+  rpc deleteTask(google.protobuf.StringValue) returns (google.protobuf.Empty);
+}
+
+message TaskCreateInfo {
+  string name = 1;
+}
+
+message TaskInfo {
+  string id = 1;
+  string name = 2;
+  google.protobuf.Timestamp created = 3;
+  bool done = 4;
+}
+
+message TaskInfos {
+  repeated TaskInfo tasks = 1;
+}
