@@ -9,3 +9,4 @@ bubble - простой задачник
 
 ## Запуск программы
     go build -v -o bin/bubble
+    ./bin/bubble
